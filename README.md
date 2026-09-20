@@ -1,16 +1,32 @@
-# React + Vite
+# Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive Task Management application built with React.js. The application allows users to create, organize, and manage their tasks through a clean and interactive user interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Create new tasks with title and description
+* Set task priority: High, Medium, or Low
+* Organize tasks by categories
+* Track task completion status
+* Form validation
+* React Router navigation
+* Custom Hooks for reusable logic
+* API integration using Fetch API
+* JSON Server for local REST API
+* Responsive UI with Tailwind CSS
+* Modern glassmorphism-inspired design
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* React.js
+* JavaScript (ES6+)
+* React Router
+* Tailwind CSS
+* Fetch API
+* JSON Server
+* Custom React Hooks
+* React State Management with `useState`
 
-## Expanding the ESLint configuration
+## Project Purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was built to practice building a real-world React application, focusing on component-based architecture, routing, form handling, API requests, reusable custom hooks, and CRUD operations.
