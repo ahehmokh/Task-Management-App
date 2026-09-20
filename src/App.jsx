@@ -9,6 +9,7 @@ import HomePage from './Pages/Homepage'
 import { myTool } from './Context/DataTransferringtool'
 import { useState } from 'react'
 import AddTask from './Pages/AddTask'
+import EditTask from './Pages/EditTask'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path='/' element={<MainPage/>}/>
       <Route path='/Homepage' element={<HomePage/>}/>
       <Route path='/AddTask' element={<AddTask/>}/>
+      <Route path="/EditTask/:id" element={<EditTask />}/>
     </Routes>
     </myTool.Provider>
   )
