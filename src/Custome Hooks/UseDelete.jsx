@@ -1,21 +1,14 @@
+import { deleteTask } from "../utils/taskStorage";
+
 const UseDelete = () => {
 
     const handleDelete = async (task) => {
 
         try {
 
-            const response = await fetch(
-                `http://localhost:8000/Tasks/${task.id}`,
-                {
-                    method: "DELETE"
-                }
-            );
+            const deleted = deleteTask(task.id);
 
-            if (!response.ok) {
-                throw new Error("Failed to delete task");
-            }
-
-            return true;
+            return deleted;
 
         } catch (error) {
 
