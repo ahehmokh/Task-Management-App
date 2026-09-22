@@ -1,18 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import { myTool } from "../Context/DataTransferringtool";
-import UseFetch from "../Custome Hooks/UseFetch";
 import UseEdit from "../Custome Hooks/UseEdit";
 import UseDelete from "../Custome Hooks/UseDelete";
+import { getTasks } from "../utils/taskStorage";
 
 const HomePage = () => {
-
-    // ==============================
-    // Fetch Tasks
-    // ==============================
-
-    UseFetch("http://localhost:8000/Tasks");
 
     // ==============================
     // Context
@@ -25,6 +19,18 @@ const HomePage = () => {
     // ==============================
 
     const [filterType, setFilterType] = useState("all");
+
+    // ==============================
+    // Load Tasks From LocalStorage
+    // ==============================
+
+    useEffect(() => {
+
+        const storedTasks = getTasks();
+
+        myData.setTasks(storedTasks);
+
+    }, []);
 
     // ==============================
     // Tasks

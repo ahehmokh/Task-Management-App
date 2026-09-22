@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
+
 import UseAdd from "../Custome Hooks/UseAdd";
 
 const AddTask = () => {
@@ -17,18 +18,17 @@ const AddTask = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         const addedTask = await handleAdd(newTask);
 
-        // If adding the task failed
         if (!addedTask) {
             return;
         }
 
         console.log("Task Added:", addedTask);
 
-        // Reset form
         setNewTask({
             title: "",
             description: "",
@@ -37,7 +37,6 @@ const AddTask = () => {
             category: ""
         });
 
-        // Go back to HomePage after successful POST
         navigate("/HomePage");
     };
 

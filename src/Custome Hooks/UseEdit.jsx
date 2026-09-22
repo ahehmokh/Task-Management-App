@@ -1,3 +1,5 @@
+import { updateTask } from "../utils/taskStorage";
+
 const UseEdit = () => {
 
     // ==============================
@@ -8,26 +10,12 @@ const UseEdit = () => {
 
         try {
 
-            const response = await fetch(
-                `http://localhost:8000/Tasks/${task.id}`,
-                {
-                    method: "PATCH",
+            const updatedTask = {
+                ...task,
+                completed: !task.completed
+            };
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        completed: !task.completed
-                    })
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error("Failed to update task");
-            }
-
-            const updatedTask = await response.json();
+            updateTask(updatedTask);
 
             return updatedTask;
 
@@ -48,28 +36,9 @@ const UseEdit = () => {
 
         try {
 
-            console.log("Sending task:", task);
+            console.log("Updating task:", task);
 
-            const response = await fetch(
-                `http://localhost:8000/Tasks/${task.id}`,
-                {
-                    method: "PUT",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify(task)
-                }
-            );
-
-            console.log("Response status:", response.status);
-
-            if (!response.ok) {
-                throw new Error("Failed to edit task");
-            }
-
-            const updatedTask = await response.json();
+            const updatedTask = updateTask(task);
 
             console.log("Updated task:", updatedTask);
 

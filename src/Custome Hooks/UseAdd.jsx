@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+import { addTask } from "../utils/taskStorage";
 
 const UseAdd = () => {
 
@@ -6,33 +6,15 @@ const UseAdd = () => {
 
         try {
 
-            const newTask = {
-                ...task,
-                id: uuidv4()
-            };
+            const newTask = addTask(task);
 
-            const response = await fetch(
-                "http://localhost:8000/Tasks",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(newTask)
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error("Failed to add task");
-            }
-
-            return await response.json();
+            return newTask;
 
         } catch (error) {
 
             console.log(error);
-            return null;
 
+            return null;
         }
     };
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
 import UseEdit from "../Custome Hooks/UseEdit";
+import { getTasks } from "../utils/taskStorage";
 
 const EditTask = () => {
 
@@ -36,28 +37,28 @@ const EditTask = () => {
     const [error, setError] = useState("");
 
     // ==============================
-    // Fetch Task
+    // Get Task From LocalStorage
     // ==============================
 
     useEffect(() => {
 
-        const fetchTask = async () => {
+        const fetchTask = () => {
 
             try {
 
                 setIsLoading(true);
 
-                const response = await fetch(
-                    `http://localhost:8000/Tasks/${id}`
+                const tasks = getTasks();
+
+                const foundTask = tasks.find(
+                    (task) => String(task.id) === String(id)
                 );
 
-                if (!response.ok) {
+                if (!foundTask) {
                     throw new Error("Task not found");
                 }
 
-                const data = await response.json();
-
-                setTask(data);
+                setTask(foundTask);
 
             } catch (error) {
 
@@ -95,23 +96,25 @@ const EditTask = () => {
     // Handle Submit
     // ==============================
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    console.log("Submit clicked");
+        console.log("Submit clicked");
 
-    const updatedTask = await handleEdit(task);
+        const updatedTask = await handleEdit(task);
 
-    console.log("Result:", updatedTask);
+        console.log("Result:", updatedTask);
 
-    if (!updatedTask) {
-        console.log("Update failed");
-        return;
-    }
+        if (!updatedTask) {
 
-    navigate("/HomePage");
-};
+            console.log("Update failed");
+
+            return;
+        }
+
+        navigate("/HomePage");
+    };
 
     // ==============================
     // Loading
